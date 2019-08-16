@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=dynamodb:4569,lambda:4574,sqs:4576,ssm:4583
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR:-docker}
+      - LAMBDA_REMOTE_DOCKER=true
+      - DEBUG=1
+      - HOSTNAME_EXTERNAL=localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 4569:4569
+      - 4574:4574
+      - 4576:4576
+      - 4583:4583
+  terraform:
+    image: hashicorp/terraform:latest
+    environment:
+      - TF_VAR_ssm_endpoint=http://localstack:4583
+      - TF_VAR_dynamodb_endpoint=http://localstack:4569
+      - TF_VAR_lambda_endpoint=http://localstack:4574
+      - TF_VAR_sqs_endpoint=http://localstack:4576
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=not-valid-id
+      - AWS_SECRET_ACCESS_KEY=not-valid-key
+    depends_on:
+      - localstack
+    volumes:
+      - ./test/terraform:/opt/work
+    working_dir: /opt/work
+    entrypoint: sh
+    command: -c "sleep 6 && terraform init && terraform apply -auto-approve -no-color"
+

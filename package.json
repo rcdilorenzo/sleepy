@@ -1,0 +1,10 @@
+{
+  "name": "sleepy",
+  "version": "1.0.0",
+  "description": "An AWS experiment to use multiple services for tracking sleeping hours",
+  "main": "index.js",
+  "repository": "git@github.com:rcdilorenzo/sleepy.git",
+  "author": "Christian Di Lorenzo <rcddeveloper@icloud.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
