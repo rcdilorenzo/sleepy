@@ -6,5 +6,22 @@
   "repository": "git@github.com:rcdilorenzo/sleepy.git",
   "author": "Christian Di Lorenzo <rcddeveloper@icloud.com>",
   "license": "MIT",
-  "dependencies": {}
+  "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "pretest": "yarn lint",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.7.2",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-semistandard": "^8.0.1",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.512.0"
+  }
 }
