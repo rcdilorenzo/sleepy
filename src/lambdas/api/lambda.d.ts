@@ -48,3 +48,19 @@ export interface LambdaProxyRealResponse {
 }
 
 export type LambdaProxyResponse = Promise<LambdaProxyRealResponse | never>;
+
+export interface LambdaSQSRecord {
+  messageId: string;
+  receiptHandle: string;
+  body?: string;
+  attributes: Record<string, string>;
+  messageAttributes: Record<string, string>;
+  md5OfBody: string;
+  eventSource: string; // aws:sqs
+  eventSourceARN: string;
+  awsRegion: string;
+}
+
+export interface LambdaSQSEvent {
+  Records: LambdaSQSRecord[];
+}

@@ -70,12 +70,16 @@ resource "aws_api_gateway_method_settings" "general_settings" {
 
 # CloudWatch
 
-# This is to optionally manage the CloudWatch Log Group for the Lambda Function.
-# If skipping this resource configuration, also add "logs:CreateLogGroup" to the IAM policy below.
 resource "aws_cloudwatch_log_group" "post_sleep_event" {
   name              = "/aws/lambda/PostSleepEvent"
   retention_in_days = 14
 }
+
+resource "aws_cloudwatch_log_group" "handle_job" {
+  name              = "/aws/lambda/HandleJob"
+  retention_in_days = 14
+}
+
 
 # See also the following AWS managed policy: AWSLambdaBasicExecutionRole
 resource "aws_iam_policy" "lambda_logging" {
@@ -103,8 +107,4 @@ EOF
 resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role = "${aws_iam_role.lambda_exec.name}"
   policy_arn = "${aws_iam_policy.lambda_logging.arn}"
-}
-
-output "base_url" {
-  value = "${aws_api_gateway_deployment.post_sleep_event.invoke_url}"
 }
