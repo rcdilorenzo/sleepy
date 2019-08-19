@@ -9,4 +9,8 @@ const ddb = new AWS.DynamoDB({
   endpoint
 });
 
+export const dbClient = new AWS.DynamoDB.DocumentClient({
+  service: ddb
+});
+
 export default ddb;
