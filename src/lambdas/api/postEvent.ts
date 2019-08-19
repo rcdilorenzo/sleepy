@@ -1,4 +1,4 @@
-import { LambdaProxyEvent, LambdaProxyResponse } from "./lambda";
+import { LambdaProxyEvent, LambdaProxyResponse } from './lambda';
 
 exports.handler = async (
   event: LambdaProxyEvent

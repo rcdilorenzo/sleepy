@@ -6,5 +6,5 @@ test('reading a table', async () => {
     .describeTable(params)
     .promise();
 
-  console.log(result);
+  expect(result.Table!.TableName).toEqual('sleep');
 });
