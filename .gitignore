@@ -1,4 +1,10 @@
 node_modules/
+build/
+
+deploy/.terraform/
+deploy/terraform.tfstate
+deploy/terraform.tfstate.backup
+
 test/terraform/.terraform/
 test/terraform/terraform.tfstate
 test/terraform/terraform.tfstate.backup
