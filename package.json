@@ -27,7 +27,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "aws-sdk": "^2.512.0",
+    "aws-sdk": "^2.814.0",
     "uuid": "^3.3.3"
   }
 }
